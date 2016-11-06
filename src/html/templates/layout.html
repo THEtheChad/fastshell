@@ -1,0 +1,17 @@
+<!doctype html>
+<html class="no-js">
+  {% include "partials/head.html" %}
+  <body>
+    <main class="main" role="main">
+      {% block content %}{% endblock %}
+    </main>
+    
+    {% include "partials/sidebar.html" %}
+    {% include "partials/footer.html" %}
+
+    <script src="assets/components/jquery/jquery.min.js"></script>
+    <script src="assets/js/scripts.min.js"></script>
+
+    {% block footer-scripts %}{% endblock %}
+  </body>
+</html>

@@ -8,8 +8,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     cssnano = require('gulp-cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
-    package = require('./package.json');
-
+    package = require('./package.json'),
+    nunjucksRender = require('gulp-nunjucks-render');
 
 var banner = [
   '/*!\n' +
@@ -22,6 +22,12 @@ var banner = [
   ' */',
   '\n'
 ].join('');
+
+gulp.task('html', function() {
+  return gulp.src('src/html/pages/**/*.+(html|nunjucks)')
+    .pipe(nunjucksRender({path:['src/html/templates']}))
+    .pipe(gulp.dest('app'));
+});
 
 gulp.task('css', function () {
     return gulp.src('src/scss/style.scss')
@@ -38,7 +44,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('js',function(){
-  gulp.src('src/js/scripts.js')
+  gulp.src('src/js/*.js')
     .pipe(sourcemaps.init())
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
@@ -63,8 +69,11 @@ gulp.task('bs-reload', function () {
     browserSync.reload();
 });
 
-gulp.task('default', ['css', 'js', 'browser-sync'], function () {
+gulp.task('build', ['html', 'css', 'js']);
+
+gulp.task('default', ['build', 'browser-sync'], function () {
     gulp.watch("src/scss/*/*.scss", ['css']);
     gulp.watch("src/js/*.js", ['js']);
+    gulp.watch("src/html/**/*.html", ['html']);
     gulp.watch("app/*.html", ['bs-reload']);
 });
