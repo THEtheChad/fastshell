@@ -1,7 +1,12 @@
+{% set JQUERY_VERSION = "2.2.4" %}
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   {% include "partials/head.html" %}
   <body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
     <main class="main" role="main">
       {% block content %}{% endblock %}
     </main>
@@ -9,9 +14,11 @@
     {% include "partials/sidebar.html" %}
     {% include "partials/footer.html" %}
 
-    <script src="assets/components/jquery/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{JQUERY_VERSION}}/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/components/jquery/{{JQUERY_VERSION}}/jquery.min.js"><\/script>')</script>
     <script src="assets/js/scripts.min.js"></script>
 
     {% block footer-scripts %}{% endblock %}
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
   </body>
 </html>

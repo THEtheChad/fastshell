@@ -1,0 +1,24 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+	<role>: <name>
+	twitter: <twitter>
+
+# THANKS
+
+	<role>: <name>
+	twitter: <twitter>
+
+# TECHNOLOGY COLOPHON
+
+  CSS3, HTML5
+  Apache Server Configs, jQuery, Modernizr, Normalize.css
+
+# SITE
+
+	Last update:2012/02/04
+	Language: English
+	Doctype: HTML5
+	IDE: Sublime Text
